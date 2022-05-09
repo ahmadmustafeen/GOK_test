@@ -18,7 +18,7 @@ const tiles = [{title:"Popular Serial"},{title:"Popular Movies"}];
 const Home = () => {
   return (
     <div>
-      <Header />
+      <Header pageName="Home" />
       <div className="mainContainer">
       {
         tiles.map((item,index)=>{
