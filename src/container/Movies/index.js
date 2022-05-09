@@ -23,7 +23,7 @@ const Movies = () => {
   const [movies, setMovies] = React.useState([]);
   const [displayData, setDisplayData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-
+  const [filterYear,setFilterYear] = React.useState('');
   React.useEffect(() => {
     fetchApiData()
       .then((data) => {
@@ -40,11 +40,31 @@ const Movies = () => {
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
   }, [movies]);
+    React.useEffect(() => {
+        if(filterYear){
+            setDisplayData(movies.filter(movie => movie.releaseYear == filterYear).splice(0, NUMBER_OF_MOVIES));
+        }
+        else{
+            setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
+        }
+    }, [filterYear]);
   return (
     <div className="moviesContainer">
       <Header pageName="Popular Movies" />
 
       <div className="moviesListContainer">
+      <div className="filtercomponent">
+      <div className="select-component">
+      <select onChange={e=>setFilterYear(e.target.value)}>
+        <option value="">All</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+      </select>
+      </div>
+
+      </div>
         {isLoading ? (
           <div className="loader">
           <Bars heigth="100" width="100" color="white" ariaLabel="loading-indicator" />

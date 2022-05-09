@@ -1,13 +1,14 @@
 .moviesListContainer{
     width: 100%;
     display: flex;
+    flex-direction: column;
     min-height: 60vh;
 }
 .moviesListWrapper{
     width: 80%;
     display: flex;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-bottom: 50px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -39,4 +40,21 @@
 .loader h2{
     font-size: 20px;
     color: white;
+}
+.filtercomponent{
+    width: 78%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 50px;
+    margin-top: 50px;
+}
+.select-component select{
+    width: 100px;
+    border: 0px solid ;
+    outline: none;
+    border-bottom-width: 1px;
+    height: 30px;
+    background-color: transparent;
 }
