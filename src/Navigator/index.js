@@ -5,12 +5,9 @@ import Home from "../container/Home";
 
 const Navigator = () => {
   return (
-      <Home />
-    // <BrowserRouter>
-    // <Routes>
-    //   <Route path="/" component={Home} />
-    // </Routes>
-    // </BrowserRouter>
+    <Routes>
+      <Route path="/home" exact element={<Home />} />
+    </Routes>
   );
 };
 
