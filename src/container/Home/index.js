@@ -1,20 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import "./style.css";
 
-const NavigationTile = ({ title }) => {
+const NavigationTile = ({ title,navigateTo }) => {
   return (
     <div className="navigationTilesContainer">
+    <Link to={navigateTo}>
       <div className="navigationTilesContainer-image" />
       <div className="navigationTilesContainer-title">
         <h2>{title}</h2>
       </div>
+      </Link>
     </div>
   );
 };
 
-const tiles = [{title:"Popular Serial"},{title:"Popular Movies"}];
+const tiles = [{title:"Popular Serial",navigateTo:'/series'},{title:"Popular Movies",navigateTo:'/movies'}];
 const Home = () => {
   return (
     <div>
@@ -23,7 +26,9 @@ const Home = () => {
       {
         tiles.map((item,index)=>{
             return (
-                <NavigationTile title={item.title} key={index} />
+                <NavigationTile title={item.title} key={index}
+                navigateTo={item.navigateTo}/>
+                 
             )
         })
       }
