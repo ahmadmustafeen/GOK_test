@@ -1,5 +1,6 @@
 .headerContainer{
     display: flex;
+    height: 100px;
     background-image: linear-gradient(rgb(0, 174, 255),rgb(47, 188, 253));
     flex-direction: row;
 }
