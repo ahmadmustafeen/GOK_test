@@ -1,0 +1,26 @@
+.moviesListContainer{
+    width: 100%;
+    display: flex;
+    min-height: 60vh;
+}
+.moviesListWrapper{
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.moviesListContainer-item{
+    width: calc(100% / 5 - 10px);
+    height: calc(100% / 5 - 10px);
+    margin: 0px 5px;
+}
+.moviesListContainer-image{
+    width: 100%;
+    height: 80%;
+}
+.moviesListContainer-desc h6{
+    font-weight: 400;
+    font-size: 14px;
+}
