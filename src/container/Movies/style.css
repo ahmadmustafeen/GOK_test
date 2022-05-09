@@ -24,3 +24,19 @@
     font-weight: 400;
     font-size: 14px;
 }
+.loader{
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0,0,0,0.5);
+}
+.loader h2{
+    font-size: 20px;
+    color: white;
+}

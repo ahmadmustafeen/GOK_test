@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 
@@ -32,8 +33,9 @@ const Movies = () => {
         console.log(err, "err");
       })
       .finally(() => {
-        setIsLoading(false);
-      });
+        setTimeout(()=>{
+            setIsLoading(false);},1500);
+        })
   }, []);
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
@@ -44,11 +46,12 @@ const Movies = () => {
 
       <div className="moviesListContainer">
         {isLoading ? (
-          <div className="loader"></div>
+          <div className="loader">
+          <Bars heigth="100" width="100" color="white" ariaLabel="loading-indicator" />
+          </div>
         ) : (
           <div className="moviesListWrapper">
             {displayData.map((item, index) => {
-                console.log(item)
               return (
                 <div className="moviesListContainer-item" key={index}>
                 <div className="moviesListContainer-image">
