@@ -1,0 +1,38 @@
+.headerContainer{
+    display: flex;
+    background-image: linear-gradient(rgb(0, 174, 255),rgb(47, 188, 253));
+    flex-direction: row;
+}
+.headerLeftContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    height: 100%;
+}
+.headerLeftContainer h1{
+    color: white;
+    font-weight: 400;
+}
+.headerRightContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    height: 100%;
+}
+.headerRightNavigatorItem{
+    width: 120px;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerRightNavigatorItem h3{
+cursor: pointer;
+text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+}
