@@ -7,7 +7,7 @@ import "./style.css";
 const NavigationTile = ({ title,navigateTo }) => {
   return (
     <div className="navigationTilesContainer">
-    <Link to={navigateTo}>
+    <Link to={navigateTo} style={{textDecoration:'none'}}>
       <div className="navigationTilesContainer-image" />
       <div className="navigationTilesContainer-title">
         <h2>{title}</h2>

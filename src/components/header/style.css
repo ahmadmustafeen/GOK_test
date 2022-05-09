@@ -33,6 +33,7 @@
 }
 .headerRightNavigatorItem h3{
 cursor: pointer;
+
 text-transform: uppercase;
     font-weight: 400;
     color: white;

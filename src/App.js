@@ -11,9 +11,7 @@ import Home from './container/Home';
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/home" exact element={<Home />} />
-    </Routes>
+    <Navigator />
   </BrowserRouter>
   );
 }
