@@ -3,14 +3,14 @@ import React from "react";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
+import { MOVIES_URL } from "../../constant";
 
 import "./style.css";
 
-const URL = "https://mumer01.github.io/publicApis/BoxOffice.json";
 const NUMBER_OF_MOVIES = 25;
 const fetchApiData = async () => {
   return axios
-    .get(URL)
+    .get(MOVIES_URL)
     .then((data) => {
       return data?.data?.entries;
     })
