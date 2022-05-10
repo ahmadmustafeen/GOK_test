@@ -3,6 +3,7 @@ import React from "react";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
+import { optionYears } from "../Movies";
 
 import "./style.css";
 
@@ -57,10 +58,13 @@ const Series = () => {
       <div className="select-component">
       <select onChange={e=>setFilterYear(e.target.value)}>
         <option value="">All</option>
-        <option value="2016">2016</option>
-        <option value="2015">2015</option>
-        <option value="2014">2014</option>
-        <option value="2013">2013</option>
+        {optionYears.map((item) => {
+                return (
+                  <option key={item.id} value={item.year}>
+                    {item.year}
+                  </option>
+                );
+              })}
       </select>
       </div>
 
