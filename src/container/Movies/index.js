@@ -32,6 +32,7 @@ const Movies = () => {
   const [displayData, setDisplayData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [filterYear, setFilterYear] = React.useState("");
+  const [startingIndex, setStartingIndex] = React.useState("");
   React.useEffect(() => {
     fetchApiData()
       .then((data) => {
@@ -60,6 +61,15 @@ const Movies = () => {
       setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
     }
   }, [filterYear]);
+  const handleIndexChange = (index) => {
+    setStartingIndex(index);
+    setDisplayData(
+      movies.slice(
+        index * NUMBER_OF_MOVIES,
+        index * NUMBER_OF_MOVIES + NUMBER_OF_MOVIES
+      )
+    );
+  };
   return (
     <div className="moviesContainer">
       <Header pageName="Popular Movies" />
@@ -109,7 +119,23 @@ const Movies = () => {
           </div>
         )}
       </div>
-
+      { filterYear==="" &&<div className="pagination-container">
+        {Array.from(
+          { length: Math.ceil(movies.length / NUMBER_OF_MOVIES) },
+          (v, k) => k + 1
+        ).map((item, index) => {
+          return (
+            <div
+              className={`pagination-item ${
+                startingIndex == index ? "active" : ""
+              }`}
+              onClick={() => handleIndexChange(index)}
+            >
+              {index + 1}
+            </div>
+          );
+        })}
+      </div>}
       <Footer />
     </div>
   );
