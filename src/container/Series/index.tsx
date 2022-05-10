@@ -52,12 +52,12 @@ const Series = () => {
   }, [movies]);
     React.useEffect(() => {
         if(filterYear){
-            setDisplayData(movies.filter(movie => movie?.releaseYear == filterYear).splice(0, NUMBER_OF_MOVIES));
+            setDisplayData(movies.filter(movie => movie?.releaseYear === filterYear).splice(0, NUMBER_OF_MOVIES));
         }
         else{
             setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
         }
-    }, [filterYear]);
+    }, [filterYear,movies]);
   return (
     <div className="moviesContainer">
       <Header pageName="Popular Series" />

@@ -1,7 +1,7 @@
 import axios from "axios";
 import gql from "graphql-tag";
 import React from "react";
-import { Query, useQuery } from "react-apollo";
+import {  useQuery } from "react-apollo";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -52,13 +52,13 @@ const Movies = () => {
     if (filterYear) {
       setDisplayData(
         movies
-          .filter((movie) => movie.releaseYear == filterYear)
+          .filter((movie) => movie.releaseYear === filterYear)
           .splice(0, NUMBER_OF_MOVIES)
       );
     } else {
       setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
     }
-  }, [filterYear]);
+  }, [filterYear,movies]);
   const handleIndexChange = (index:any) => {
     setStartingIndex(index);
     setDisplayData(
