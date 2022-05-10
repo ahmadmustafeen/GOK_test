@@ -3,8 +3,6 @@ import React from "react";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
-import { optionYears } from "../Movies";
-
 import "./style.css";
 
 const URL = "https://mumer01.github.io/publicApis/BoxOffice.json";
@@ -25,6 +23,8 @@ const Series = () => {
   const [displayData, setDisplayData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [filterYear,setFilterYear] = React.useState('');
+  const [years, setYears] = React.useState([]);
+  
   React.useEffect(() => {
     fetchApiData()
       .then((data) => {
@@ -40,6 +40,8 @@ const Series = () => {
   }, []);
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
+    setYears(new Set(movies.map(item=>item.releaseYear).sort()))
+  
   }, [movies]);
     React.useEffect(() => {
         if(filterYear){
@@ -58,10 +60,10 @@ const Series = () => {
       <div className="select-component">
       <select onChange={e=>setFilterYear(e.target.value)}>
         <option value="">All</option>
-        {optionYears.map((item) => {
+        {Array.from(years).reverse().map((item) => {
                 return (
-                  <option key={item.id} value={item.year}>
-                    {item.year}
+                  <option key={item} value={item}>
+                    {item}
                   </option>
                 );
               })}

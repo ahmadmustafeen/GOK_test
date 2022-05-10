@@ -19,18 +19,11 @@ const fetchApiData = async () => {
     });
 };
 
-export const optionYears = [
-  { id: 1, year: "2016" },
-  { id: 2, year: "2015" },
-  { id: 3, year: "2014" },
-  { id: 4, year: "2013" },
-  { id: 5, year: "2012" },
-  { id: 6, year: "2011" },
-];
 const Movies = () => {
   const [movies, setMovies] = React.useState([]);
   const [displayData, setDisplayData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [years, setYears] = React.useState([]);
   const [filterYear, setFilterYear] = React.useState("");
   const [startingIndex, setStartingIndex] = React.useState("");
   React.useEffect(() => {
@@ -49,6 +42,7 @@ const Movies = () => {
   }, []);
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
+    setYears(new Set(movies.map(item=>item.releaseYear).sort()))
   }, [movies]);
   React.useEffect(() => {
     if (filterYear) {
@@ -79,10 +73,10 @@ const Movies = () => {
           <div className="select-component">
             <select onChange={(e) => setFilterYear(e.target.value)}>
               <option value="">All</option>
-              {optionYears.map((item) => {
+              {Array.from(years).reverse().map((item) => {
                 return (
-                  <option key={item.id} value={item.year}>
-                    {item.year}
+                  <option key={item} value={item}>
+                    {item}
                   </option>
                 );
               })}
