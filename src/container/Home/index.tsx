@@ -4,7 +4,7 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import "./style.css";
 
-const NavigationTile = ({ title,navigateTo }) => {
+const NavigationTile = ({ title,navigateTo }:any) => {
   return (
     <div className="navigationTilesContainer">
     <Link to={navigateTo} style={{textDecoration:'none'}}>

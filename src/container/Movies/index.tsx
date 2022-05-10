@@ -6,6 +6,7 @@ import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { MovieListComponent } from "../../components/movielistcomponent";
+// @ts-ignore
 import { MOVIES_URL } from "../../constant";
 
 import "./style.css";
@@ -23,12 +24,12 @@ const fetchApiData = async () => {
 };
 
 const Movies = () => {
-  const [movies, setMovies] = React.useState([]);
-  const [displayData, setDisplayData] = React.useState([]);
+  const [movies, setMovies] = React.useState<any[]>([]);
+  const [displayData, setDisplayData] = React.useState<any []>([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [years, setYears] = React.useState([]);
+  const [years, setYears] = React.useState<any []>([]);
   const [filterYear, setFilterYear] = React.useState("");
-  const [startingIndex, setStartingIndex] = React.useState("");
+  const [startingIndex, setStartingIndex] = React.useState(0);
   React.useEffect(() => {
     fetchApiData()
       .then((data) => {
@@ -45,7 +46,7 @@ const Movies = () => {
   }, []);
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
-    setYears(new Set(movies.map((item) => item.releaseYear).sort()));
+    setYears(Array.from(new Set(movies.map((item) => item.releaseYear).sort())));
   }, [movies]);
   React.useEffect(() => {
     if (filterYear) {
@@ -58,7 +59,7 @@ const Movies = () => {
       setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
     }
   }, [filterYear]);
-  const handleIndexChange = (index) => {
+  const handleIndexChange = (index:any) => {
     setStartingIndex(index);
     setDisplayData(
       movies.slice(
@@ -81,7 +82,7 @@ query {
   }
 }
 `;
-  const {loading,err,data} = useQuery(FETCH_MOVIES);
+  const {data} = useQuery(FETCH_MOVIES);
   React.useEffect(()=>{
     if(data){
       setMovies(data?.queryMovies);
@@ -113,7 +114,7 @@ query {
         {isLoading ? (
           <div className="loader">
             <Bars
-              heigth="100"
+              height="100"
               width="100"
               color="white"
               ariaLabel="loading-indicator"
@@ -136,7 +137,7 @@ query {
             return (
               <div
                 className={`pagination-item ${
-                  startingIndex == index ? "active" : ""
+                  startingIndex === index ? "active" : ""
                 }`}
                 onClick={() => handleIndexChange(index)}
               >
