@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const Header = ({ pageName }) => {
@@ -6,17 +7,25 @@ const Header = ({ pageName }) => {
     <div className="header">
       <div className="headerContainer">
         <div className="headerLeftContainer">
-          <h1>GOK Stream</h1>
+          <Link style={{ textDecoration: "none" }} to={"/home"}>
+            <h1>GOK Stream</h1>
+          </Link>
         </div>
         <div className="headerRightContainer">
           <div className="headerRightNavigatorItem">
-            <h3>Home</h3>
+            <Link style={{ textDecoration: "none" }} to={"/home"}>
+              <h3>Home</h3>
+            </Link>
           </div>
           <div className="headerRightNavigatorItem">
-            <h3>Series</h3>
+            <Link style={{ textDecoration: "none" }} to={"/series"}>
+              <h3>Series</h3>
+            </Link>
           </div>
           <div className="headerRightNavigatorItem">
-            <h3>Movies</h3>
+            <Link style={{ textDecoration: "none" }} to={"/movies"}>
+              <h3>Movies</h3>
+            </Link>
           </div>
         </div>
       </div>
