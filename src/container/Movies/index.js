@@ -3,7 +3,7 @@ import React from "react";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
-import { MovieListComponent } from "../../components/movielistcomonent";
+import { MovieListComponent } from "../../components/movielistcomponent";
 import { MOVIES_URL } from "../../constant";
 
 import "./style.css";
