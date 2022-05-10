@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-const Header = ({ pageName }) => {
+type Props = {
+  pageName: string;
+}
+
+
+const Header = ( props:any) => {
   return (
     <div className="header">
       <div className="headerContainer">
@@ -30,7 +35,7 @@ const Header = ({ pageName }) => {
         </div>
       </div>
       <div className="headerPageNameContainer">
-        <h3>{pageName}</h3>
+        <h3>{props.pageName}</h3>
       </div>
     </div>
   );
