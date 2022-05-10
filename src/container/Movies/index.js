@@ -1,5 +1,7 @@
 import axios from "axios";
+import gql from "graphql-tag";
 import React from "react";
+import { Query, useQuery } from "react-apollo";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -20,9 +22,6 @@ const fetchApiData = async () => {
     });
 };
 
-
-
-
 const Movies = () => {
   const [movies, setMovies] = React.useState([]);
   const [displayData, setDisplayData] = React.useState([]);
@@ -33,7 +32,7 @@ const Movies = () => {
   React.useEffect(() => {
     fetchApiData()
       .then((data) => {
-        setMovies(data);
+        // setMovies(data);
       })
       .catch((err) => {
         console.log(err, "err");
@@ -46,7 +45,7 @@ const Movies = () => {
   }, []);
   React.useEffect(() => {
     setDisplayData(movies.slice(0, NUMBER_OF_MOVIES));
-    setYears(new Set(movies.map(item=>item.releaseYear).sort()))
+    setYears(new Set(movies.map((item) => item.releaseYear).sort()));
   }, [movies]);
   React.useEffect(() => {
     if (filterYear) {
@@ -68,6 +67,28 @@ const Movies = () => {
       )
     );
   };
+  
+const FETCH_MOVIES = gql`
+query {
+  queryMovies {
+    title
+    releaseYear
+    images {
+      PosterArt {
+        url
+      }
+    }
+  }
+}
+`;
+  const {loading,err,data} = useQuery(FETCH_MOVIES);
+  React.useEffect(()=>{
+    if(data){
+      setMovies(data?.queryMovies);
+    }
+  },[data]);
+
+  
   return (
     <div className="moviesContainer">
       <Header pageName="Popular Movies" />
@@ -77,13 +98,15 @@ const Movies = () => {
           <div className="select-component">
             <select onChange={(e) => setFilterYear(e.target.value)}>
               <option value="">All</option>
-              {Array.from(years).reverse().map((item) => {
-                return (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                );
-              })}
+              {Array.from(years)
+                .reverse()
+                .map((item) => {
+                  return (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  );
+                })}
             </select>
           </div>
         </div>
@@ -99,30 +122,30 @@ const Movies = () => {
         ) : (
           <div className="moviesListWrapper">
             {displayData.map((item, index) => {
-              return (
-                <MovieListComponent item={item} index={index} />
-              );
+              return <MovieListComponent item={item} index={index} />;
             })}
           </div>
         )}
       </div>
-      { filterYear==="" &&<div className="pagination-container">
-        {Array.from(
-          { length: Math.ceil(movies.length / NUMBER_OF_MOVIES) },
-          (v, k) => k + 1
-        ).map((item, index) => {
-          return (
-            <div
-              className={`pagination-item ${
-                startingIndex == index ? "active" : ""
-              }`}
-              onClick={() => handleIndexChange(index)}
-            >
-              {index + 1}
-            </div>
-          );
-        })}
-      </div>}
+      {filterYear === "" && (
+        <div className="pagination-container">
+          {Array.from(
+            { length: Math.ceil(movies.length / NUMBER_OF_MOVIES) },
+            (v, k) => k + 1
+          ).map((item, index) => {
+            return (
+              <div
+                className={`pagination-item ${
+                  startingIndex == index ? "active" : ""
+                }`}
+                onClick={() => handleIndexChange(index)}
+              >
+                {index + 1}
+              </div>
+            );
+          })}
+        </div>
+      )}
       <Footer />
     </div>
   );
