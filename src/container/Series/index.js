@@ -3,6 +3,7 @@ import React from "react";
 import { Bars } from "react-loader-spinner";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
+import { MovieListComponent } from "../../components/movielistcomonent";
 import { MOVIES_URL } from "../../constant";
 import "./style.css";
 
@@ -18,6 +19,9 @@ const fetchApiData = async () => {
       throw err;
     });
 };
+
+
+
 
 const Series = () => {
   const [movies, setMovies] = React.useState([]);
@@ -80,19 +84,7 @@ const Series = () => {
           <div className="moviesListWrapper">
             {displayData.map((item, index) => {
               return (
-                <div className="moviesListContainer-item" key={index}>
-                <div className="moviesListContainer-image">
-                <img src={item.images?.["Poster Art"]?.url} style={{width:"100%",height:"100%"}} />
-                </div>
-                <div className="moviesListContainer-desc">
-                 <h6>
-                 {item.title}
-                 </h6> 
-                 <h6>
-                  {item.releaseYear}
-                 </h6>
-                </div>
-                </div>
+               <MovieListComponent item={item} index={index} />
               );
             })}
           </div>
